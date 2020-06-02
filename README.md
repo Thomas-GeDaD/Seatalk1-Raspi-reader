@@ -6,9 +6,12 @@ UDP to the listener (opencpn/SignalK and further more. There the sentences are t
 
 ## Hardware:
 First of all you can use our MCS-board. Connect the Yellow signal Seatalk wire to one of the Inputs (In1-In4)
-You can also use the Openplotter-MCS app where this script is includet.
+You can also use the Openplotter-MCS app where this script is includet.:
+https://www.gedad.de/shop/gecos-wired/#cc-m-product-15562399022  
+https://www.gedad.de/2019/12/27/gedad-marine-control-server/  
 
-If you want to use your own hardware, connect the yellow seatlak wire via an optocoupler to any GPIO. 
+
+If you want to use your own hardware, connect the yellow seatalk wire via an optocoupler to any GPIO. 
 The Gpio number in the script must edit and match to the connected GPIO!
 
 Excample:
@@ -21,10 +24,14 @@ The Software uses pigpio for bitbanging 9bit mode. For using you must enable pig
 
 ### For install pigpio:
 Normaly Pigpio is already installed on your Pi. Else:  
-sudo apt-get install pigpio  
+<code>sudo apt-get install pigpio</code> 
+
+For start pgpio:  
+<code>sudo pigpiod</code>   
 
 For enable Pigpio by default:  
-sudo systemctl enable pigpiod  
+<code>sudo systemctl enable pigpiod  </code>   
+
 
 ### For the script:  
 Download the STALK_read.py.   
@@ -41,4 +48,7 @@ If the UDP sends correctly you can check in another Terminal with:
 <code>nc -ulkw 0 ipaddress port</code>  
     
     
-If you need help or want changes let me know...
+## General:
+
+If you need help or want changes let me know...  
+(tested with Pi3 /4B and pigpio Version V1.71)
