@@ -28,15 +28,17 @@ sudo systemctl enable pigpiod
 
 ### For the script:  
 Download the STALK_read.py.   
-<code>wget https://github.com/Thomas-GeDaD/Seatalk1-Raspi-reader/blob/master/STALK_read.py </code>  
+<code>git clone https://github.com/Thomas-GeDaD/Seatalk1-Raspi-reader</code>  
 On the Head of the script you can edit the GPIO, Port and IP. 
  
 Then start the script:  
-<code>sudo python /home/pi/STALK_read.py</code>  
+<code>sudo python /home/pi//Seatalk1-Raspi-reader/STALK_read.py</code> 
+
+
 
 ## Check UDP datastrem
-If the UDP sends correctly you can check in another Terminal with:
-
-
-
-
+If the UDP sends correctly you can check in another Terminal with:  
+<code>nc -ulkw 0 ipaddress port</code>  
+    
+    
+If you need help or want changes let me know...
