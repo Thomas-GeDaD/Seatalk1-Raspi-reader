@@ -44,6 +44,7 @@ if __name__ == '__main__':
 							string2_new="0"+string2_new
 						data=string2_new + ","
 					x+=2
+		time.sleep(0.01)
 				
 	except KeyboardInterrupt:
 		st1read.bb_serial_read_close(gpio)
