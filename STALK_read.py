@@ -14,40 +14,43 @@ ip= '127.0.0.1' #define ip default localhost 127.0.0.1
 gpio= 19 #define gpio where the seatalk1 (yellow wire) is connected
 
 if __name__ == '__main__':
-	st1read =pigpio.pi()
-	try:
-		st1read.bb_serial_read_close(gpio) #close if already run
-	except:
-		pass
-	st1read.bb_serial_read_open(gpio, 4800,9)
-	data=""
-	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	try:
-		while True:
-			out=(st1read.bb_serial_read(gpio))
-			out0=out[0]
-			if out0>0:
-				out_data=out[1]
-				x=0
-				while x < out0:
-					if out_data[x+1] ==0:
-						string1=str(hex(out_data[x]))
-						data= data+string1[2:]+ ","
-					else:
-						data=data[0:-1]
-						data="$STALK,"+data+"\r\n"
-						sock.sendto(data.encode('utf-8'), (ip, port))
-						print (data)
-						string2=str(hex(out_data[x]))
-						string2_new=string2[2:]
-						if len(string2_new)==1:
-							string2_new="0"+string2_new
-						data=string2_new + ","
-					x+=2
-		time.sleep(0.01)
-				
-	except KeyboardInterrupt:
-		st1read.bb_serial_read_close(gpio)
-		print ("exit")
+    st1read =pigpio.pi()
+    try:
+        st1read.bb_serial_read_close(gpio) #close if already run
+    except:
+        pass
+    st1read.bb_serial_read_open(gpio, 4800,9)
+    data=""
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        while True:
+            out=(st1read.bb_serial_read(gpio))
+            out0=out[0]
+            if out0>0:
+                out_data=out[1]
+                x=0
+                while x < out0:
+                    if out_data[x+1] ==0:
+                        string1=str(hex(out_data[x]))
+                        data1=str(string1[2:])
+                        if (len(data1)==1):
+                            data1="0"+data1
+                        data= data+data1+ ","
+                    else:
+                        data=data[0:-1]
+                        data="$STALK,"+data+"\r\n"
+                        print(data)
+                        sock.sendto(data.encode('utf-8'), (ip, port))
+                        string2=str(hex(out_data[x]))
+                        string2_new=string2[2:]
+                        if len(string2_new)==1:
+                            string2_new="0"+string2_new
+                        data=string2_new + ","
+                    x+=2
+                
+    except KeyboardInterrupt:
+        st1read.bb_serial_read_close(gpio)
+        print ("exit")
+
 
 
