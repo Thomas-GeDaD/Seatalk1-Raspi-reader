@@ -15,6 +15,7 @@ If you want to use your own hardware, connect the yellow SeaTalk1 wire via an op
 The GPIO number in the script must be edited to match the GPIO port number used!
 
 Example:
+Info: If you get problems with your ST1-Bus, increase the 4K7 Resistor to a higher Value. On some Modules the 4K7 Resistor seems to less.
 
 ![](
 https://github.com/Thomas-GeDaD/Seatalk1-Raspi-reader/blob/master/connections.png)
